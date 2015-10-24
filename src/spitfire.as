@@ -17,25 +17,25 @@ var server = new SimpleSocketServer();
 // example2
 /*
 var server = new SimpleSocketServerSelect();
-	server.showAddressInfo1();
-	server.showAddressInfo2();
-	server.showAddressInfo3();
-	server.showAddressInfo3( "localhost" );
+    server.showAddressInfo1();
+    server.showAddressInfo2();
+    server.showAddressInfo3();
+    server.showAddressInfo3( "localhost" );
 
-	// pass trough cloudflare
-	server.showAddressInfo3( "www.corsaair.com" );
+    // pass trough cloudflare
+    server.showAddressInfo3( "www.corsaair.com" );
 
-	// direct to the server
-	server.showAddressInfo3( "www.as3lang.org" );
+    // direct to the server
+    server.showAddressInfo3( "www.as3lang.org" );
 
-	// more example
-	server.showAddressInfo3( "www.google.com" );
-	server.showAddressInfo3( "www.yahoo.com" );
-	server.showAddressInfo3( "www.cloudflare.com" );
+    // more example
+    server.showAddressInfo3( "www.google.com" );
+    server.showAddressInfo3( "www.yahoo.com" );
+    server.showAddressInfo3( "www.cloudflare.com" );
 
-	server.main();
+    server.main();
 */
 
-// example2
+// example3
 var server = new SimpleSocketServerSelect2();
-	server.main();
+    server.main();
