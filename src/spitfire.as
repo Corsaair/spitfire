@@ -3,17 +3,20 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 include "corsaair/server/spitfire/SimpleSocketServer.as";
-include "corsaair/server/spitfire/SimpleSocketServer1.as";
+include "corsaair/server/spitfire/SimpleSocketServerSelect.as";
+include "corsaair/server/spitfire/SimpleSocketServerSelect2.as";
 
 import corsaair.server.spitfire.*;
 
 // example1
 /*
 var server = new SimpleSocketServer();
+    server.main();
 */
 
 // example2
-var server = new SimpleSocketServer1();
+/*
+var server = new SimpleSocketServerSelect();
 	server.showAddressInfo1();
 	server.showAddressInfo2();
 	server.showAddressInfo3();
@@ -31,4 +34,8 @@ var server = new SimpleSocketServer1();
 	server.showAddressInfo3( "www.cloudflare.com" );
 
 	server.main();
+*/
 
+// example2
+var server = new SimpleSocketServerSelect2();
+	server.main();
