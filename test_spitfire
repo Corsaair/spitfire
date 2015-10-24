@@ -1,0 +1,18 @@
+#!/usr/bin/as3shebang -- 
+
+import shell.*;
+
+//var clilib:* = Domain.currentDomain.load( "lib-abc/clilib.abc" );
+//trace( clilib + " loaded" );
+
+//var ansilib:* = Domain.currentDomain.load( "lib-abc/ansilib.abc" );
+//trace( ansilib + " loaded" );
+
+//var hashlib:* = Domain.currentDomain.load( "lib-abc/hashlib.abc" );
+//trace( hashlib + " loaded" );
+
+var spitfire:* = Domain.currentDomain.load( "spitfire.abc" );
+trace( spitfire + " loaded" );
+
+trace( "hello world" );
+
