@@ -1,0 +1,72 @@
+#!/usr/bin/as3shebang -- 
+
+/* Note:
+   http://rosettacode.org/wiki/Hello_world/Web_server#C
+   Hello world/Web server
+
+   The task is to serve our standard text "Goodbye, World!"
+   to http://localhost:8080/ so that it can be viewed with a web browser. 
+   The provided solution must start or implement a server that accepts
+   multiple client connections and serves text as requested.
+
+   In short, with Redtamarin you cna take some small C sources
+   and directly port them to an AS3 program, even can run them from a shell script ;)
+*/
+import C.errno.*;
+import C.arpa.inet.*;
+import C.netdb.*;
+import C.netinet.*;
+import C.sys.socket.*;
+import C.stdlib.*;
+import C.unistd.*;
+import flash.utils.ByteArray;
+
+var response:String = "HTTP/1.1 200 OK\r\n"
+	response += "Content-Type: text/html; charset=UTF-8\r\n\r\n"
+	response += "<!DOCTYPE html><html><head><title>Bye-bye baby bye-bye</title>"
+	response += "<style>body { background-color: #111 }"
+	response += "h1 { font-size:4cm; text-align: center; color: black;"
+	response += " text-shadow: 0 0 2mm red}</style></head>"
+	response += "<body><h1>Goodbye, world!</h1></body></html>\r\n";
+
+var bytes:* = new ByteArray();
+    bytes.writeUTFBytes( response );
+    bytes.position = 0;
+
+var client_fd:int;
+var srv_addr:* = new sockaddr_in();
+var cli_addr:* = new sockaddr_in();
+
+var sock:int = socket( AF_INET, SOCK_STREAM, 0 );
+if( sock < 0 ) {
+	trace( "Can't open socket" );
+	throw new CError( "", errno );
+}
+
+setsockopt( sock, SOL_SOCKET, SO_REUSEADDR, 1 );
+
+var port:int = 8080;
+srv_addr.sin_family = AF_INET;
+srv_addr.sin_addr.s_addr = INADDR_ANY;
+srv_addr.sin_port = htons( port );
+
+if( bind( sock, srv_addr ) == -1 ) {
+	close( sock );
+	trace( "Can't bind" );
+	throw new CError( "", errno );
+}
+
+listen( sock, 5 );
+while( 1 ) {
+	client_fd = accept( sock, cli_addr );
+	trace( "got connection" );
+
+	if( client_fd == -1 ) {
+		trace( "Can't accept" );
+		throw new CError( "", errno );
+		continue;
+	}
+
+	send( client_fd, bytes );
+	close( client_fd );
+}
