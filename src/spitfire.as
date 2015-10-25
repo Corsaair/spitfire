@@ -5,8 +5,12 @@
 include "corsaair/server/spitfire/SimpleSocketServer.as";
 include "corsaair/server/spitfire/SimpleSocketServerSelect.as";
 include "corsaair/server/spitfire/SimpleSocketServerSelect2.as";
+include "corsaair/server/spitfire/SimpleSocketServerSelect3.as";
+include "corsaair/server/spitfire/SimpleSocketServerSelect4.as";
+include "corsaair/server/spitfire/SimpleSocketServerSelect5.as";
 
 import corsaair.server.spitfire.*;
+import flash.system.Worker;
 
 // example1
 /*
@@ -37,5 +41,37 @@ var server = new SimpleSocketServerSelect();
 */
 
 // example3
+/*
 var server = new SimpleSocketServerSelect2();
     server.main();
+*/
+
+// example4
+/*
+var server = new SimpleSocketServerSelect3();
+    server.sleepTime = 1000; // try diff values like: 10, 100, 1000, etc.
+    server.main();
+*/
+
+// example5
+/*
+var server = new SimpleSocketServerSelect4();
+    server.sleepTime = 1000;
+    server.main();
+*/
+
+// example6
+var server = new SimpleSocketServerSelect5();
+    server.sleepTime = 1000;
+
+    if( Worker.current.isPrimordial )
+    {
+        trace( ">> primordial <<" );
+        server.main();    
+    }
+    else
+    {
+        trace( ">> background <<" );
+        server.registerNewArrival();
+    }
+    

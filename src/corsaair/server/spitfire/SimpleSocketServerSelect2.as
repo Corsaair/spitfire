@@ -21,7 +21,7 @@ package corsaair.server.spitfire
      * A simple socket server upgrade 2.
      * 
      * Let's clean up the code and reorganise it into methods
-     * to spearate responsibility.
+     * to separate responsibility.
      * 
      */
     public class SimpleSocketServerSelect2
@@ -214,7 +214,7 @@ package corsaair.server.spitfire
             }
             else
             {
-                connections.push( new_fd );
+                _addClient( new_fd );
                 
                 var s:String = inet_ntop( client_addr.sin_family, client_addr );
                 trace( "selectserver: new connection from " + s  + ", socket " + new_fd );
