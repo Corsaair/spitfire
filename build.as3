@@ -1,0 +1,11 @@
+import redbean.*;
+import shell.FileSystem;
+
+compile( "src/spitfire.as" );
+
+if( FileSystem.exists( "spitfire.abc" ) )
+{
+	FileSystem.removeFile( "spitfire.abc" );
+}
+
+FileSystem.move( "src/spitfire.abc", "spitfire.abc" );
