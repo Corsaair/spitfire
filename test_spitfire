@@ -2,6 +2,14 @@
 
 import shell.*;
 
+/* ATTENTION
+   from a shell script you can not run workers
+   SimpleSocketServerSelect5 and following will fail
+   you have to run from the redshell directly
+   for ex:
+   $ ./redshell_dd spitfire.abc
+*/
+
 //var clilib:* = Domain.currentDomain.load( "lib-abc/clilib.abc" );
 //trace( clilib + " loaded" );
 
